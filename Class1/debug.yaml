@@ -1,0 +1,17 @@
+- hosts: all
+  vars:
+    packages:
+      - tree
+      - apache2
+      - wget
+      - git
+      - unzip
+  become: yes
+  tasks:
+    - name: Install apache
+      ansible.builtin.apt:
+        name: "{{ packages }}"
+        state: present
+      register: kaizen
+
+    - debug: msg={{ kaizen }}
