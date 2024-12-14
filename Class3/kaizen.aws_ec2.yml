@@ -1,0 +1,19 @@
+plugin: amazon.aws.aws_ec2
+regions:
+  - us-east-1
+
+# filters:
+#   tag:Name: vm*
+
+keyed_groups:
+- key: tags
+  prefix: kaizen
+- key: instance_type  
+  prefix: world
+
+
+compose:
+  ansible_host: public_ip_address
+  alias: "'{{ tags.Name }}'"
+hostnames:
+  - "tag:Name"
